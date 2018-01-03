@@ -7,6 +7,7 @@ using Microsoft.Bot.Connector;
 
 namespace Chatbot.Bot.Dialogs
 {
+    //Add a comment
     [Serializable]
     [LuisModel("652ee539-f05a-4076-b790-06ab8d8b0cf3", "4ac32110c73144c09bb3f5ee4398e79d")]
     public class TestLuisDialog : LuisDialog<Task>
