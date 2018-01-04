@@ -22,9 +22,9 @@ node('master'){
     stage ('Analyze'){
         try{
              dir('JenkinsMVC'){
-                bat 'C:\Tools\SonarQube\SonarQube.Scanner.MSBuild.exe begin /k:jkinsmvc'
+                bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:jkinsmvc'
                 bat 'dotnet build'
-                bat 'C:\Tools\SonarQube\SonarQube.Scanner.MSBuild.exe end'
+                bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
             }
 
 
