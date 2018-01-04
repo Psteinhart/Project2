@@ -11,7 +11,7 @@ node('master'){
         try{
             dir('JenkinsMVC'){
                 bat 'dotnet restore'
-                bat 'msbuild build JenkinsMVC.csproj , /t:clean, '
+                bat 'msbuild build JenkinsMVC.csproj '
             }
 
         } catch(error){
