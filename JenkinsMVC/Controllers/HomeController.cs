@@ -17,7 +17,7 @@ namespace JenkinsMVC.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Your application description page.";//Comment so jenkins has something to do
 
             return View();
         }
