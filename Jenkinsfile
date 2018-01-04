@@ -3,14 +3,14 @@ node('master'){
         try{
             git url: 'https://github.com/Psteinhart/Project2.git'
 
-        } catch{
+        } catch (error){
             //SlackSend message: color:'danger'
         }
     }
     stage('Build'){
         try{
 
-        } catch{
+        } catch(error){
              //SlackSend message: color:'danger'
         }
     }
@@ -18,7 +18,7 @@ node('master'){
     stage ('Analyze'){
         try{
 
-        } catch{
+        } catch(error){
              //SlackSend message: color:'danger'
         }
     }
@@ -26,7 +26,7 @@ node('master'){
     stage('Test'){
         try{
 
-        } catch{
+        } catch(error){
              //SlackSend message: color:'danger'
         }
     }
@@ -34,7 +34,7 @@ node('master'){
     stage('Package'){
         try{
 
-        } catch{
+        } catch(error){
              //SlackSend message: color:'danger'
         }
     }
@@ -42,7 +42,7 @@ node('master'){
     stage('Deploy'){
         try{
 
-        } catch{
+        } catch(error){
             //SlackSend message: color:'danger'
         }
     }
