@@ -37,6 +37,10 @@ node('master'){
 
     stage('Test'){
         try{
+            dir('JenkinsMVC.Test')
+            {
+                bat 'dotnet test'
+            }
 
         } catch(error){
              //SlackSend message: color:'danger'
