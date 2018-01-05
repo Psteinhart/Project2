@@ -53,7 +53,8 @@ node('master'){
         try{
             dir('JenkinsMVC')
             {
-                bat 'dotnet pack JenkinsMVC.csproj --output ../Package'
+                bat 'dotnet publish JenkinsMVC.csproj --output ../Package'
+                bat 'msbuild /t:pack JenkinsMVC.csproj'
             }
 
         } catch(error){
@@ -63,6 +64,7 @@ node('master'){
 
     stage('Deploy'){
         try{
+            //bat 'msdeploy --verb:sync --sourcepath: --destpath:'
 
         } catch(error){
             //SlackSend message: color:'danger'
