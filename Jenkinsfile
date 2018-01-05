@@ -53,7 +53,7 @@ node('master'){
         try{
             dir('JenkinsMVC')
             {
-                bat 'dotnet package JenkinsMVC.csproj --out ../Package'
+                bat 'dotnet pack JenkinsMVC.csproj --out ../Package'
             }
 
         } catch(error){
