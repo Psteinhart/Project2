@@ -65,7 +65,7 @@ node('master'){
 
     stage('Deploy'){
         try{
-            bat '"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="C:\\Program Files (x86)\\Jenkins\\workspace\\jenkinops\\JenkinsMVC\\" -dest:iisApp="Default Web Site/jenkinops",computername=ec2-34-207-249-238.compute-1.amazonaws.com:8080,username="Administrator",password=Pizza123  -enableRule:AppOffline'
+            bat '"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="C:\\Program Files (x86)\\Jenkins\\workspace\\jenkinops\\JenkinsMVC\\" -dest:iisApp="Default Web Site/jenkinops",computername=ec2-34-207-249-238.compute-1.amazonaws.com:8080,username=Administrator,password=Pizza123  -enableRule:AppOffline'
 
         } catch(error){
             //SlackSend message: color:'danger'
