@@ -2,6 +2,7 @@ node('master'){
     stage('Import'){
         try{
             git url: 'https://github.com/Psteinhart/Project2.git'
+           slackSend "started ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
 
         } catch (error){
             //SlackSend message: color:'danger'
