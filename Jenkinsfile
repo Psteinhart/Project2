@@ -55,7 +55,7 @@ node('master'){
             dir('JenkinsMVC')
             {
                 bat 'dotnet publish JenkinsMVC.csproj --output ../Package'
-                bat 'msbuild /t:pack JenkinsMVC.csproj'
+                //bat 'msbuild /t:pack JenkinsMVC.csproj'
             }
 
         } catch(error){
