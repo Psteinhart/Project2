@@ -10,7 +10,7 @@ node('master'){
     stage('Build'){
         try{
             dir('chatbot'){
-                bat 'dotnet restore'
+                bat 'nuget restore'
                // bat 'msbuild /t:clean,build JenkinsMVC.csproj'
                bat 'dotnet build'
             }
