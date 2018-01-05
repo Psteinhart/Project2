@@ -9,9 +9,10 @@ node('master'){
     }
     stage('Build'){
         try{
-            dir('JenkinsMVC'){
+            dir('chatbot'){
                 bat 'dotnet restore'
-                bat 'msbuild /t:clean,build JenkinsMVC.csproj'
+               // bat 'msbuild /t:clean,build JenkinsMVC.csproj'
+               bat 'dotnet build'
             }
 
         } catch(error){
@@ -21,9 +22,10 @@ node('master'){
 
     stage ('Analyze'){
         try{
-             dir('JenkinsMVC'){
+             dir('chatbot'){
                 bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:jkinsmvc'
-                bat 'msbuild /t:build JenkinsMVC.csproj'
+                //bat 'msbuild /t:build JenkinsMVC.csproj'
+                bat 'dotnet build'
                 bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
             }
 
