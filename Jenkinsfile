@@ -11,8 +11,8 @@ node('master'){
         try{
             dir('chatbot'){
                 bat 'nuget restore'
-                bat 'msbuild /t:clean,build JenkinsMVC.csproj'
-               //bat 'nuget build'
+                //bat 'msbuild /t:clean,build JenkinsMVC.csproj'
+               bat 'dotnet build'
             }
 
         } catch(error){
