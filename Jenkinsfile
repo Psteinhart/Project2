@@ -39,6 +39,8 @@ node('master'){
         try{
             dir('JenkinsMVC.Test')
             {
+                bat 'dotnet restore'
+                bat 'msbuild /t:build JenkinsMVC.Test.csproj'
                 bat 'dotnet test'
             }
 
@@ -49,6 +51,10 @@ node('master'){
 
     stage('Package'){
         try{
+            dir('JenkinsMVC')
+            {
+                bat 'msbuild /t:package JenkinsMVC.csproj'
+            }
 
         } catch(error){
              //SlackSend message: color:'danger'
