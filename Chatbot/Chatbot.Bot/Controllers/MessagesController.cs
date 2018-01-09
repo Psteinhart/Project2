@@ -17,6 +17,7 @@ namespace Chatbot.Bot
         /// </summary>
         /// 
         ///
+        //
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
             if (activity.Type == ActivityTypes.Message)
