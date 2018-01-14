@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!--<!DOCTYPE html>
 <html>
 <head>
     <title></title>
@@ -8,5 +8,25 @@
     <h1>Chatbot.Bot</h1>
     <p>Describe your bot here and your terms of use etc.</p>
     <p>Visit <a href="https://www.botframework.com/">Bot Framework</a> to register your bot. When you register it, remember to set your bot's endpoint to <pre>https://<i>your_bots_hostname</i>/api/messages</pre></p>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>This is our ChatBot!</h1>
+    <div id="bot" />
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+    <script>
+      BotChat.App({
+        directLine: { secret: direct_line_secret },
+        user: { id: 'userid' },
+        bot: { id: 'botid' },
+        resize: 'detect'
+      }, document.getElementById("bot"));
+    </script>
 </body>
 </html>
