@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.Library", "Chatbot.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.Data", "Chatbot.Data\Chatbot.Data.csproj", "{CC02E2D9-8839-4AFA-A5B1-FB56C1064654}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.Test", "Chatbot.Test\Chatbot.Test.csproj", "{91B8FBE8-D8EE-412B-8515-4DF5AAC03031}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.Client", "Chatbot.Client\Chatbot.Client.csproj", "{B6A4B2DA-43F1-4676-8F47-2342759EEAF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{CC02E2D9-8839-4AFA-A5B1-FB56C1064654}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC02E2D9-8839-4AFA-A5B1-FB56C1064654}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC02E2D9-8839-4AFA-A5B1-FB56C1064654}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91B8FBE8-D8EE-412B-8515-4DF5AAC03031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91B8FBE8-D8EE-412B-8515-4DF5AAC03031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91B8FBE8-D8EE-412B-8515-4DF5AAC03031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91B8FBE8-D8EE-412B-8515-4DF5AAC03031}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6A4B2DA-43F1-4676-8F47-2342759EEAF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6A4B2DA-43F1-4676-8F47-2342759EEAF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6A4B2DA-43F1-4676-8F47-2342759EEAF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6A4B2DA-43F1-4676-8F47-2342759EEAF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
