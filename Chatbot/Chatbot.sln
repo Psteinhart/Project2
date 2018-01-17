@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.Bot", "Chatbot.Bot\Chatbot.Bot.csproj", "{66572A36-E730-4196-8E13-68832B408BE0}"
 EndProject
@@ -13,9 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.Test", "Chatbot.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatbot.Client", "Chatbot.Client\Chatbot.Client.csproj", "{B6A4B2DA-43F1-4676-8F47-2342759EEAF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.LibraryService", "Chatbot.LibraryService\Chatbot.LibraryService.csproj", "{74569508-463D-4E58-8543-60C9468D2711}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatbot.LibraryService", "Chatbot.LibraryService\Chatbot.LibraryService.csproj", "{74569508-463D-4E58-8543-60C9468D2711}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.DataService", "Chatbot.DataService\Chatbot.DataService.csproj", "{407EF85D-4878-4971-991B-BEA4418F9857}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatbot.DataService", "Chatbot.DataService\Chatbot.DataService.csproj", "{407EF85D-4878-4971-991B-BEA4418F9857}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

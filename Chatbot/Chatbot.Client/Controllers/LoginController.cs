@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Chatbot.Client.Models;
 using Chatbot.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -25,7 +26,7 @@ namespace Chatbot.Client.Controllers
        // [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(UserInfo loginModel)
+        public async Task<IActionResult> Login(User loginModel)
         {
             if (LoginUser(loginModel.Email, loginModel.Password))
             {
@@ -35,7 +36,7 @@ namespace Chatbot.Client.Controllers
             };
 
                 var userIdentity = new ClaimsIdentity(claims, "login");
-
+                 
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
                 await HttpContext.SignInAsync(principal);
 
@@ -52,7 +53,7 @@ namespace Chatbot.Client.Controllers
             return true;
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public ActionResult Register()
         {
@@ -63,16 +64,17 @@ namespace Chatbot.Client.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+       // [Authorize]
 
-        public ActionResult Register(UserInfo acc)
+        public ActionResult Register(User user)
         {
             if (ModelState.IsValid)
             {
-                return View("Register");
+
+                return RedirectToAction("Login", "Login");
             }
-            return RedirectToAction("Login", "Register");
-            // return View(acc);
+            return View("Register");
+            
         }
     }
 }
