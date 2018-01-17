@@ -5,13 +5,17 @@ VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.Bot", "Chatbot.Bot\Chatbot.Bot.csproj", "{66572A36-E730-4196-8E13-68832B408BE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.Library", "Chatbot.Library\Chatbot.Library.csproj", "{71C563A3-6B66-4553-825E-9C452795125B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatbot.Library", "Chatbot.Library\Chatbot.Library.csproj", "{71C563A3-6B66-4553-825E-9C452795125B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.Data", "Chatbot.Data\Chatbot.Data.csproj", "{CC02E2D9-8839-4AFA-A5B1-FB56C1064654}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatbot.Data", "Chatbot.Data\Chatbot.Data.csproj", "{CC02E2D9-8839-4AFA-A5B1-FB56C1064654}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.Test", "Chatbot.Test\Chatbot.Test.csproj", "{91B8FBE8-D8EE-412B-8515-4DF5AAC03031}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.Client", "Chatbot.Client\Chatbot.Client.csproj", "{B6A4B2DA-43F1-4676-8F47-2342759EEAF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatbot.Client", "Chatbot.Client\Chatbot.Client.csproj", "{B6A4B2DA-43F1-4676-8F47-2342759EEAF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.LibraryService", "Chatbot.LibraryService\Chatbot.LibraryService.csproj", "{74569508-463D-4E58-8543-60C9468D2711}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatbot.DataService", "Chatbot.DataService\Chatbot.DataService.csproj", "{407EF85D-4878-4971-991B-BEA4418F9857}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{B6A4B2DA-43F1-4676-8F47-2342759EEAF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6A4B2DA-43F1-4676-8F47-2342759EEAF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6A4B2DA-43F1-4676-8F47-2342759EEAF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74569508-463D-4E58-8543-60C9468D2711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74569508-463D-4E58-8543-60C9468D2711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74569508-463D-4E58-8543-60C9468D2711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74569508-463D-4E58-8543-60C9468D2711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{407EF85D-4878-4971-991B-BEA4418F9857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{407EF85D-4878-4971-991B-BEA4418F9857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{407EF85D-4878-4971-991B-BEA4418F9857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{407EF85D-4878-4971-991B-BEA4418F9857}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
