@@ -4,18 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Chatbot.Client.Models
 {
-    public  class User
+    public class Login
     {
-
-        [StringLength(20)]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only")]
-        [Required(ErrorMessage = "First Name Required")]
-        public string FirstName { get; set; }
-
-        [StringLength(20)]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only")]
-        [Required(ErrorMessage = "Last Name Required")]
-        public string LastName { get; set; }
 
         [StringLength(50)]
         [DataType(DataType.EmailAddress)]
@@ -24,7 +14,7 @@ namespace Chatbot.Client.Models
         public string Email { get; set; }
 
         [StringLength(50)]
-        [DataType(DataType.Password)] 
+        [DataType(DataType.Password)]
         [Required(ErrorMessage = "Required Password")]
         public string Password { get; set; }
     }

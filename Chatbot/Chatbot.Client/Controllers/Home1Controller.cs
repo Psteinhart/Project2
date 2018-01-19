@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Chatbot.Client.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class Home1Controller : Controller
     {
         public IActionResult Index()
         {

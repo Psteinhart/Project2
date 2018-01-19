@@ -1,17 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Chatbot.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Chatbot.Client
+namespace Chatbot.ClientAngular
 {
     public class Startup
     {
@@ -25,21 +23,6 @@ namespace Chatbot.Client
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            //setup identity settings
-            //user validation settings
-           // services.AddDbContext<SpotDBContext>(options =>
-           // options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            //services.AddIdentity<UserInfo, IdentityRole>()
-            //    .AddEntityFrameworkStores<SpotDBContext>()
-            //    .AddDefaultTokenProviders();
-
-            //user settings to have unique email when registering
-            //services.Configure<IdentityOptions>(options =>
-            //{
-            //    options.User.RequireUniqueEmail = true;
-            //});
 
             //add cokie authentication service
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -58,7 +41,10 @@ namespace Chatbot.Client
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
+                    HotModuleReplacement = true
+                });
             }
             else
             {
@@ -66,15 +52,17 @@ namespace Chatbot.Client
             }
 
             app.UseStaticFiles();
-
-            //this is for cookie authentiction
             app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Login}/{action=Login}/{id?}");
+
+                routes.MapSpaFallbackRoute(
+                    name: "spa-fallback",
+                    defaults: new { controller = "Login", action = "Login" });
             });
         }
     }
