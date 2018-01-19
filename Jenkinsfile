@@ -16,7 +16,7 @@ node('master'){
                 bat 'dotnet build'
                 
                 //for angular
-                dir('Chatbot/Chatbot.AngularClient'){//folder name
+                dir('Chatbot.AngularClient'){//folder name
                     bat 'npm install'
                     bat 'ng build'
                 }
