@@ -39,6 +39,7 @@ node('master'){
                             //for angular
                 dir('Angular'){//angular folder
                 bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.exe begin /k:jkinsmvc'//have to have new key
+                }
 
 
         } catch(error){
