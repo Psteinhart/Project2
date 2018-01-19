@@ -16,7 +16,7 @@ node('master'){
                 bat 'dotnet build'
                 
                 //for angular
-                dir('Angular'){//folder name
+                dir('Chatbot.AngularClient'){//folder name
                     bat 'npm install'
                     bat 'ng build'
                 }
@@ -37,8 +37,8 @@ node('master'){
             }
             
                             //for angular
-                dir('Angular'){//angular folder
-                bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.exe begin /k:jkinsmvc'//have to have new key
+                dir('Chatbot/Chatbot.AngularClient'){//angular folder
+                bat 'C:\\Tools\\SonarQube\\sonar-scanner-3.0.3.778\\lib\\sonar-scanner-cli-3.0.3.778.jar /k:angular'//have to have new key
                 }
 
 
@@ -57,10 +57,10 @@ node('master'){
             }
             
             //angular
-            dir('AngularFolder')
-            {
-                bat 'ng test'
-            }
+           // dir('Chatbot/Chatbot.AngularClient')
+            //{
+             //   bat 'ng test'
+            //}
 
         } catch(error){
              //SlackSend message: color:'danger'
@@ -75,7 +75,7 @@ node('master'){
                 //bat 'msbuild /t:pack JenkinsMVC.csproj'
             }
             
-            dir('Angular')//angular folder
+            dir('Chatbot/Chatbot.AngularClient')//angular folder
             {
                 bat '7zip AngularDistFolder -c'//clean and zip, look for this
                 //bat 'msbuild /t:pack JenkinsMVC.csproj'
