@@ -8,7 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-
+using Chatbot.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 namespace Chatbot.DataService
 {
     public class Startup
@@ -23,6 +25,7 @@ namespace Chatbot.DataService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<SpotDBContext>(opt => opt.UseInMemoryDatabase("User"));
             services.AddMvc();
         }
 

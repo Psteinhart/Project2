@@ -11,6 +11,16 @@ namespace Chatbot.Data
         public virtual DbSet<UserInfo> UserInfo { get; set; }
         public virtual DbSet<UserInterest> UserInterest { get; set; }
 
+        //added for service
+        public SpotDBContext(DbContextOptions<SpotDBContext> options)
+            : base(options)
+        {
+        }
+
+        public SpotDBContext()
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
