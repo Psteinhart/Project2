@@ -38,7 +38,7 @@ node('master'){
             
                             //for angular
                 dir('Chatbot/Chatbot.AngularClient'){//angular folder
-                bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.exe begin /k:jkinsmvc'//have to have new key
+                bat 'C:\\Tools\\SonarQube\\sonar-scanner-3.0.3.778\\lib\\sonar-scanner-cli-3.0.3.778.jar /k:angular'//have to have new key
                 }
 
 
