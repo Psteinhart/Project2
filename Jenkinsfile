@@ -14,6 +14,12 @@ node('master'){
                 bat 'nuget restore'
                 //bat 'msbuild /t:clean,build JenkinsMVC.csproj'
                 bat 'dotnet build'
+                
+                //for angular
+                dir('Angular'){//folder name
+                    bat 'npm install'
+                    bat 'ng build'
+                }
             }
 
         } catch(error){
@@ -29,6 +35,11 @@ node('master'){
                 bat 'dotnet build'
                 bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
             }
+            
+                            //for angular
+                dir('Angular'){//angular folder
+                bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.exe begin /k:jkinsmvc'//have to have new key
+                }
 
 
         } catch(error){
@@ -44,6 +55,12 @@ node('master'){
                 bat 'msbuild /t:build JenkinsMVC.Test.csproj'
                 bat 'dotnet test'
             }
+            
+            //angular
+            dir('AngularFolder')
+            {
+                bat 'ng test'
+            }
 
         } catch(error){
              //SlackSend message: color:'danger'
@@ -57,6 +74,12 @@ node('master'){
                 bat 'dotnet publish JenkinsMVC.csproj --output ../Package'
                 //bat 'msbuild /t:pack JenkinsMVC.csproj'
             }
+            
+            dir('Angular')//angular folder
+            {
+                bat '7zip AngularDistFolder -c'//clean and zip, look for this
+                //bat 'msbuild /t:pack JenkinsMVC.csproj'
+            }
 
         } catch(error){
              //SlackSend message: color:'danger'
@@ -67,7 +90,7 @@ node('master'){
         try{
             bat 'dotnet build ./JenkinsMVC/JenkinsMVC.csproj /p:DeployOnBuild=true /p:PublishProfile=publish'
             bat '"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="C:\\Program Files (x86)\\Jenkins\\workspace\\jenkinops\\package\\" -dest:iisApp="Default Web Site/jenkinops",computername=https://ec2-34-207-249-238.compute-1.amazonaws.com:8172/msdeploy.axd,username=EC2AMAZ-33F7I7R/Administrator,password=Pizza123,AuthType=basic -allowuntrusted -enableRule:AppOffline'
-
+           // bat '"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisApp="C:\\Program Files (x86)\\Jenkins\\workspace\\jenkinops\\package\\" -dest:iisApp="Default Web Site/jenkinops",computername=https://ec2-34-207-249-238.compute-1.amazonaws.com:8172/msdeploy.axd,username=EC2AMAZ-33F7I7R/Administrator,password=Pizza123,AuthType=basic -allowuntrusted -enableRule:AppOffline'
         } catch(error){
             //SlackSend message: color:'danger'
         }
