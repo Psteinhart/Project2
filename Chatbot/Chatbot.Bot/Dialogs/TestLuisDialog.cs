@@ -7,6 +7,8 @@ using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.FormFlow;
 using Microsoft.Bot.Builder.Luis.Models;
 using Microsoft.Bot.Connector;
+using System.Net.Http;
+using System.Web;
 
 namespace Chatbot.Bot.Dialogs
 {
@@ -21,6 +23,17 @@ namespace Chatbot.Bot.Dialogs
 
             return Task.CompletedTask;
         }
+
+
+        [LuisIntent("TeamSearch")]
+        public async Task TeamSearch(IDialogContext context, LuisResult result)
+        {
+            string teamName = result.Entities.FirstOrDefault(e => e.Type == "Team Name").Entity;
+            await context.PostAsync("I'm sorry. I'm learning how to understand you.");
+            context.Wait(MessageReceived);
+        }
+
+
 
         [LuisIntent("None")]
         public async Task None(IDialogContext context, LuisResult result)
