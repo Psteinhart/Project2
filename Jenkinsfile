@@ -57,10 +57,10 @@ node('master'){
             }
             
             //angular
-            dir('Chatbot/Chatbot.AngularClient')
-            {
-                bat 'ng test'
-            }
+           // dir('Chatbot/Chatbot.AngularClient')
+            //{
+             //   bat 'ng test'
+            //}
 
         } catch(error){
              //SlackSend message: color:'danger'
