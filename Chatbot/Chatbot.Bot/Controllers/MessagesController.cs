@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -26,9 +27,13 @@ namespace Chatbot.Bot
             }
             else
             {
-                HandleSystemMessage(activity);
+                ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
+                var reply = HandleSystemMessage(activity);
+                if (reply != null)
+                    await connector.Conversations.ReplyToActivityAsync(reply);
             }
             var response = Request.CreateResponse(HttpStatusCode.OK);
+           
             return response;
         }
 
@@ -41,9 +46,13 @@ namespace Chatbot.Bot
             }
             else if (message.Type == ActivityTypes.ConversationUpdate)
             {
-                // Handle conversation state changes, like members being added and removed
-                // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
-                // Not available in all channels
+                string replyMessage = string.Empty;
+                replyMessage += $"Hi there\n\n";
+                replyMessage += $"I am Spot. Designed to answer questions about Sports.  \n";
+                replyMessage += $"Currently I have following features  \n";
+                replyMessage += $"* Ask question about the author of this App: Try 'Who is Phil'\n\n";
+                replyMessage += $"I will get more intelligent in future.";
+                return message.CreateReply(replyMessage);
             }
             else if (message.Type == ActivityTypes.ContactRelationUpdate)
             {
