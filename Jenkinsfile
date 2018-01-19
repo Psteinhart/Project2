@@ -16,7 +16,7 @@ node('master'){
                 bat 'dotnet build'
                 
                 //for angular
-                dir('Angular'){//folder name
+                dir('AngularClient'){//folder name
                     bat 'npm install'
                     bat 'ng build'
                 }
@@ -37,7 +37,7 @@ node('master'){
             }
             
                             //for angular
-                dir('Angular'){//angular folder
+                dir('AngularClient'){//angular folder
                 bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.exe begin /k:jkinsmvc'//have to have new key
                 }
 
@@ -57,7 +57,7 @@ node('master'){
             }
             
             //angular
-            dir('AngularFolder')
+            dir('AngularClient')
             {
                 bat 'ng test'
             }
@@ -75,7 +75,7 @@ node('master'){
                 //bat 'msbuild /t:pack JenkinsMVC.csproj'
             }
             
-            dir('Angular')//angular folder
+            dir('AngularClient')//angular folder
             {
                 bat '7zip AngularDistFolder -c'//clean and zip, look for this
                 //bat 'msbuild /t:pack JenkinsMVC.csproj'
