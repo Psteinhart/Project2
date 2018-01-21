@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
             console.log(resp.email);
             console.log(resp.password);
             if (this.model.username === resp.email && this.model.password === resp.password) {
-                this.router.navigate(['/register']);
+                this.router.navigate(['/home']);
             } else {
                 this.alertService.error("Not registered");
             this.loading = false;
