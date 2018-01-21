@@ -1,10 +1,27 @@
-// // Importing the libraries
-// import { Injectable } from '@angular/core';
-// import { Http, Response, Headers } from '@angular/http';
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/do'; // debug
-// import { Observable } from 'rxjs/Observable';
-// import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+// Importing the libraries
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do'; // debug
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+
+
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
+@Injectable()
+export class DemoService {
+ 
+    constructor(private http: HttpClient) {}
+ 
+    // Uses http.get() to load data from a single API endpoint
+    getFoods() {
+        return this.http.get('http://localhost:61053/api/User');
+    }
+}
 
 // // To inject the dependancies in the service
 // @Injectable()

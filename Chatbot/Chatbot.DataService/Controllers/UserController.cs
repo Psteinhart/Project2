@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Chatbot.Data;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +11,7 @@ namespace Chatbot.DataService.Controllers
 {
     [Produces("application/json")]
     [Route("api/User")]
+    [EnableCors("AllowSpecificOrigin")]
     public class UserController : Controller
     {
         private static SpotDBContext _db = new SpotDBContext();// = new SpotDBContext();
@@ -17,7 +19,17 @@ namespace Chatbot.DataService.Controllers
         [HttpGet]
         public IEnumerable<UserInfo> GetAll()
         {
-            return _db.UserInfo.ToList();
+            if (ModelState.IsValid)
+            {
+                var item = _db.UserInfo.ToList();
+                if (item == null)
+                {
+                    return null;
+                }
+                return item;
+            }
+            return null;
+
         }
         // GET: api/User/5
         [HttpGet("{Email}")]
