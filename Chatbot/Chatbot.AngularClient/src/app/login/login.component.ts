@@ -39,7 +39,11 @@ export class LoginComponent implements OnInit {
             console.log(resp.password);
             localStorage.setItem('currentUser', JSON.stringify(resp.email));
             if (this.model.username === resp.email && this.model.password === resp.password) {
+<<<<<<< HEAD
                 this.router.navigate(['/Home']);
+=======
+                this.router.navigate(['/home']);
+>>>>>>> 693b11711af87e80352bff2666d070628661384d
             } else {
                 this.alertService.error("Not registered");
             this.loading = false;
