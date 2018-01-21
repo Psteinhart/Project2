@@ -29,10 +29,10 @@ export class RegisterComponent {
         us.lastname = this.model.lastName;
         us.password = this.model.password;
 
-        console.log(this.model.username+" "+ this.model.password+" "+this.model.firstName+" "+this.model.lastName);
+       // console.log(this.model.username+" "+ this.model.password+" "+this.model.firstName+" "+this.model.lastName);
 
         this.loading = true;
-        this.http.post('http://localhost:61053/api/User/', us).subscribe(
+        this.http.post('http://spotbotpotdataservice.azurewebsites.net/api/User/', us).subscribe(
                            data => {
                     this.alertService.success('Registration successful', true);
                     this.router.navigate(['/login']);
@@ -42,17 +42,5 @@ export class RegisterComponent {
                     this.loading = false;
                 });
 
-        // this.loading = true;
-        // this.userService.create(this.model)
-        //     .subscribe(
-        //         data => {
-        //             this.alertService.success('Registration successful', true);
-        //             this.router.navigate(['/login']);
-        //         },
-        //         error => {
-        //             this.alertService.error(error);
-        //             this.loading = false;
-                    
-        //         });
     }
 }

@@ -33,10 +33,10 @@ export class LoginComponent implements OnInit {
 
 
     login() {
-
-        (this.http.get<UserInfo>('http://localhost:52066/api/User/' + this.model.username).subscribe(resp => {
-            console.log(resp.email);
-            console.log(resp.password);
+        //http://localhost:61053/api/User, 52066 is phil
+        (this.http.get<UserInfo>('http://spotbotpotdataservice.azurewebsites.net/api/User/' + this.model.username).subscribe(resp => {
+           // console.log(resp.email);
+            //console.log(resp.password);
             localStorage.setItem('currentUser', JSON.stringify(resp.email));
             if (this.model.username === resp.email && this.model.password === resp.password) {
                 this.router.navigate(['/Home']);
@@ -50,20 +50,7 @@ export class LoginComponent implements OnInit {
             this.loading = false;
         }
     ));
-
-        // this.loading = true;
-        // this.authenticationService.login(this.model.username, this.model.password)
-        //     .subscribe(
-        //         data => {
-        //             this.router.navigate([this.returnUrl]);
-        //         },
-        //         error => {
-        //             this.alertService.error(error);
-        //             this.loading = false;
-        //         });        
+     
     }
-    // //test user input and print to console
-    // display() {
-    //     console.log(this.model.username +' '+ this.model.password);
-    // }
+
 }
