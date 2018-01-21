@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
     login() {
 
-        (this.http.get<UserInfo>('http://localhost:61053/api/User/' + this.model.username).subscribe(resp => {
+        (this.http.get<UserInfo>('http://localhost:53571/api/User/' + this.model.username).subscribe(resp => {
             console.log(resp.email);
             console.log(resp.password);
             if (this.model.username === resp.email && this.model.password === resp.password) {
