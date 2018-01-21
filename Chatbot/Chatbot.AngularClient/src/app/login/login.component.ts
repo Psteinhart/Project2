@@ -31,13 +31,19 @@ export class LoginComponent implements OnInit {
 
     }
 
+
     login() {
 
-        (this.http.get<UserInfo>('http://localhost:53571/api/User/' + this.model.username).subscribe(resp => {
+        (this.http.get<UserInfo>('http://localhost:52066/api/User/' + this.model.username).subscribe(resp => {
             console.log(resp.email);
             console.log(resp.password);
+            localStorage.setItem('currentUser', JSON.stringify(resp.email));
             if (this.model.username === resp.email && this.model.password === resp.password) {
-                this.router.navigate(['/register']);
+<<<<<<< HEAD
+                this.router.navigate(['/Home']);
+=======
+                this.router.navigate(['/home']);
+>>>>>>> 693b11711af87e80352bff2666d070628661384d
             } else {
                 this.alertService.error("Not registered");
             this.loading = false;

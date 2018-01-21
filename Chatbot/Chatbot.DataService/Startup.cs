@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Chatbot.DataService
 {
@@ -34,6 +35,13 @@ namespace Chatbot.DataService
                 options.AddPolicy("AllowSpecificOrigin",
                     builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
+                       //add cokie authentication service
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    //options.LoginPath = "/Login/Login";
+                    //options.LogoutPath = "/Login/Logout";
+                });
             //services.AddDbContext<SpotDBContext>(opt => opt.UseInMemoryDatabase("User"));
             services.AddMvc();
         }
@@ -49,7 +57,7 @@ namespace Chatbot.DataService
             //allow this 
             app.UseCors("AllowSpecificOrigin");
             //builder.WithOrigins("http://localhost:4200/"));
-
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

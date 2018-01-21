@@ -17,6 +17,7 @@ namespace Chatbot.DataService.Controllers
         private static SpotDBContext _db = new SpotDBContext();// = new SpotDBContext();
         // GET: api/User
         [HttpGet]
+       // [ValidateAntiForgeryToken]
         public IEnumerable<UserInfo> GetAll()
         {
             if (ModelState.IsValid)
@@ -31,8 +32,10 @@ namespace Chatbot.DataService.Controllers
             return null;
 
         }
+
         // GET: api/User/5
         [HttpGet("{Email}")]
+        //[ValidateAntiForgeryToken]
         public IActionResult GetById(string Email)
         {
             var item = _db.UserInfo.FirstOrDefault(t => t.Email == Email);
@@ -45,6 +48,7 @@ namespace Chatbot.DataService.Controllers
         // POST: api/User
         [HttpPost]
         [EnableCors("AllowSpecificOrigin")]
+        //[ValidateAntiForgeryToken]
         public IActionResult Post([FromBody]UserInfo item)
         {
             try
