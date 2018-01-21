@@ -31,11 +31,13 @@ export class LoginComponent implements OnInit {
 
     }
 
+
     login() {
 
         (this.http.get<UserInfo>('http://localhost:61053/api/User/' + this.model.username).subscribe(resp => {
             console.log(resp.email);
             console.log(resp.password);
+            localStorage.setItem('currentUser', JSON.stringify(resp.email));
             if (this.model.username === resp.email && this.model.password === resp.password) {
                 this.router.navigate(['/register']);
             } else {
