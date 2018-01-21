@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService, AuthenticationService } from '../_services/index';
 import { HttpClient } from '@angular/common/http';
+import { UserInfo } from '../_models/index';
 
 @Component({
     moduleId: module.id.toString(),
@@ -31,16 +32,33 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        this.loading = true;
-        this.authenticationService.login(this.model.username, this.model.password)
-            .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });        
+
+        (this.http.get<UserInfo>('http://localhost:61053/api/User/' + this.model.username).subscribe(resp => {
+            console.log(resp.email);
+            console.log(resp.password);
+            if (this.model.username === resp.email && this.model.password === resp.password) {
+                this.router.navigate(['/register']);
+            } else {
+                this.alertService.error("Not registered");
+            this.loading = false;
+            }
+        },
+        error => {
+            this.alertService.error("Username or Password is incorrect");
+            this.loading = false;
+        }
+    ));
+
+        // this.loading = true;
+        // this.authenticationService.login(this.model.username, this.model.password)
+        //     .subscribe(
+        //         data => {
+        //             this.router.navigate([this.returnUrl]);
+        //         },
+        //         error => {
+        //             this.alertService.error(error);
+        //             this.loading = false;
+        //         });        
     }
     // //test user input and print to console
     // display() {

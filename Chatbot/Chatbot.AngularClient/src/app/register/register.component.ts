@@ -2,6 +2,10 @@
 import { Router } from '@angular/router';
 
 import { AlertService, UserService } from '../_services/index';
+import { HttpClient } from '@angular/common/http';
+import { UserInfo } from '../_models/index';
+import { Body } from '@angular/http/src/body';
+import { HttpHeaders } from '@angular/common/http/src/headers';
 
 @Component({
     moduleId: module.id.toString(),
@@ -15,19 +19,40 @@ export class RegisterComponent {
     constructor(
         private router: Router,
         private userService: UserService,
+        private http: HttpClient,
         private alertService: AlertService) { }
 
     register() {
+        var us = new UserInfo();
+        us.email = this.model.username;
+        us.firstname = this.model.firstName;
+        us.lastname = this.model.lastName;
+        us.password = this.model.password;
+
+        console.log(this.model.username+" "+ this.model.password+" "+this.model.firstName+" "+this.model.lastName);
+
         this.loading = true;
-        this.userService.create(this.model)
-            .subscribe(
-                data => {
+        this.http.post('http://localhost:61053/api/User/', us).subscribe(
+                           data => {
                     this.alertService.success('Registration successful', true);
                     this.router.navigate(['/login']);
                 },
                 error => {
-                    this.alertService.error(error);
+                    this.alertService.error("Unsuccessful");
                     this.loading = false;
                 });
+
+        // this.loading = true;
+        // this.userService.create(this.model)
+        //     .subscribe(
+        //         data => {
+        //             this.alertService.success('Registration successful', true);
+        //             this.router.navigate(['/login']);
+        //         },
+        //         error => {
+        //             this.alertService.error(error);
+        //             this.loading = false;
+                    
+        //         });
     }
 }

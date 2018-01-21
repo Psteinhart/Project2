@@ -44,6 +44,7 @@ namespace Chatbot.DataService.Controllers
         }
         // POST: api/User
         [HttpPost]
+        [EnableCors("AllowSpecificOrigin")]
         public IActionResult Post([FromBody]UserInfo item)
         {
             try
@@ -52,6 +53,10 @@ namespace Chatbot.DataService.Controllers
                 {
                     return BadRequest();
                 }
+                item.ModifiedDate = DateTime.Now;
+                item.Active = true;
+                item.UserInterest = null;
+
 
                 _db.UserInfo.Add(item);
                 _db.SaveChanges();
