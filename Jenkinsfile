@@ -6,8 +6,7 @@ node('master'){
 
         } catch (error){
             //SlackSend message: color:'danger'
-            //this is a comment
-            //Amother Aoocment
+           
         }
     }
     stage('Build'){
