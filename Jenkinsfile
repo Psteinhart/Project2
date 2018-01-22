@@ -91,7 +91,7 @@ node('master'){
     stage('Deploy'){
         try{
             bat 'dotnet build ./JenkinsMVC/JenkinsMVC.csproj /p:DeployOnBuild=true /p:PublishProfile=publish'
-			bat '"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:iisapp="C:\\Program Files (x86)\\Jenkins\\workspace\\Jenkinops\\Chatbot\\Chatbot.angularClient\\dist" -dest:iisapp="Default Web Site/Spotbot",wmsvc=ec2-54-152-165-243.compute-1.amazonaws.com,username=Administrator,password=Pizza1234 -allowUntrusted -enableRule:AppOffline"'
+			bat '"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:ContentPath="C:\\Program Files (x86)\\Jenkins\\workspace\\Jenkinops\\Chatbot\\Chatbot.angularClient\\dist" -dest:ContentPath="Default Web Site/Spotbot",wmsvc=ec2-54-152-165-243.compute-1.amazonaws.com,username=Administrator,password=Pizza1234 -allowUntrusted -enableRule:AppOffline"'
     } catch(error) {
       //slackSend message: color:'danger'
     }
