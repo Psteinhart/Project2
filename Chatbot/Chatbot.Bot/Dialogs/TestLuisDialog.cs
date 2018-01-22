@@ -46,9 +46,13 @@ namespace Chatbot.Bot.Dialogs
             JsonConvert.DeserializeObject(contents);
             var myobjList = JsonConvert.DeserializeObject<List<Article>>(contents);
             var myObj = myobjList[0];
+            var myObj2 = myobjList[1];
+
 
             string replyMessage = string.Empty;
-            replyMessage += "*" + myObj.Title + '\n';
+            replyMessage += $"Here's what I found on {teamName}:\n\n";
+            replyMessage += $"*{myObj.Title} \n\n";
+            replyMessage += $"*" + myObj2.Title + '\n';
 
 
             await context.PostAsync(replyMessage);
