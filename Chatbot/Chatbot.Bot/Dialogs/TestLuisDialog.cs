@@ -174,6 +174,55 @@ namespace Chatbot.Bot.Dialogs
             context.Wait(MessageReceived);
         }
 
+
+        [LuisIntent("TeamInfo")]
+        public async Task TeamInfo(IDialogContext context, LuisResult result)
+        {
+            
+            string team = result.Entities.FirstOrDefault(e => e.Type == "Team Name").Entity;
+            team = team.ToUpper();
+
+            var client = new HttpClient();
+            var queryString = HttpUtility.ParseQueryString(string.Empty);
+           
+            // Request headers
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "eef29af8e8ac402ea3f7f65c5ca7771c");
+            //for stats
+            var uri = "https://api.fantasydata.net/v3/nfl/scores/JSON/Teams"+ queryString;
+
+            var response = await client.GetAsync(uri);
+            var contents = await response.Content.ReadAsStringAsync();
+            //deserilabalfdkj json
+            JsonConvert.DeserializeObject(contents);
+            var myobjList = JsonConvert.DeserializeObject<List<TeamInfo>>(contents);
+
+            //get stats for specific name
+            TeamInfo temp = new TeamInfo();
+            //get team name by nameyear
+            for (int i = 0; i < myobjList.Count; i++)
+            {
+                if (myobjList[i].Key.Equals(team))
+                {
+                    temp = myobjList[i];
+                }
+
+            }
+
+
+            string replyMessage = string.Empty;
+            replyMessage += $"Here is the information for {team} this season:\n\n";
+            replyMessage += $"*Full Name: {temp.FullName}\n\n";
+            replyMessage += $"*Conference: {temp.Conference} \n\n";
+            replyMessage += $"*Division: {temp.Division}\n\n";
+            replyMessage += $"*Head Coach: {temp.HeadCoach}\n";
+
+
+            await context.PostAsync(replyMessage);
+            context.Wait(MessageReceived);
+        }
+
+
+
         [LuisIntent("None")]
         public async Task None(IDialogContext context, LuisResult result)
         {

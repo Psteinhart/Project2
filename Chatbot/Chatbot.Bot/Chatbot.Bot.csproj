@@ -136,6 +136,7 @@
     <Compile Include="Models\Scores.cs" />
     <Compile Include="Models\Standing.cs" />
     <Compile Include="Models\Stats.cs" />
+    <Compile Include="Models\TeamInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
