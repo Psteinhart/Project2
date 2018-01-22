@@ -60,6 +60,72 @@ namespace Chatbot.Bot.Dialogs
         }
 
 
+        [LuisIntent("StatsTeamYear")]
+        public async Task StatsTeamYear(IDialogContext context, LuisResult result)
+        {
+            string nameYear = result.Entities.FirstOrDefault(e => e.Type == "StatsTeamYear").Entity;
+            //just get team name
+            nameYear = nameYear.ToUpper();
+            var client = new HttpClient();
+            var queryString = HttpUtility.ParseQueryString(string.Empty);
+            List<string> title = new List<string>();
+            // Request headers
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "eef29af8e8ac402ea3f7f65c5ca7771c");
+            //for stats
+            var uri = "https://api.fantasydata.net/v3/nfl/scores/JSON/TeamSeasonStats/2017?" + queryString;
+            //https://api.fantasydata.net/v3/nfl/scores/JSON/Standings/2017
+            var response = await client.GetAsync(uri);
+            var contents = await response.Content.ReadAsStringAsync();
+            //deserilabalfdkj json
+            JsonConvert.DeserializeObject(contents);
+            var myobjList = JsonConvert.DeserializeObject<List<Stats>>(contents);
+
+            //standings
+            var uri1 = "https://api.fantasydata.net/v3/nfl/scores/JSON/Standings/2017?" + queryString;
+            //
+            var response1 = await client.GetAsync(uri1);
+            var contents1 = await response1.Content.ReadAsStringAsync();
+            //deserilabalfdkj json
+            JsonConvert.DeserializeObject(contents1);
+            var myobjList1 = JsonConvert.DeserializeObject<List<Standing>>(contents1);
+
+            //get stats for specific name
+            Stats temp = new Stats();
+            //get team name by nameyear
+            for (int i = 0; i < myobjList.Count; i++)
+            {
+                if (myobjList[i].Team == nameYear)
+                {
+                    temp = myobjList[i];
+                    break;
+                }
+            }
+
+            //get standing specific name
+            Standing temp1 = new Standing();
+            //get team name by nameyear
+            for (int i = 0; i < myobjList1.Count; i++)
+            {
+                if (myobjList1[i].Team == nameYear)
+                {
+                    temp1 = myobjList1[i];
+                    break;
+                }
+            }
+
+            string replyMessage = string.Empty;
+            replyMessage += $"Here's what I found on stats of {nameYear} 2017 Season:\n\n";
+            replyMessage += $"*Team Wins: {temp1.Wins} \n\n";
+            replyMessage += $"*Team Losses: {temp1.Losses} \n\n";
+            replyMessage += $"*Team Score: {temp.Score} \n\n";
+            replyMessage += $"*OpponentScore: " + temp.OpponentScore + '\n';
+
+
+            await context.PostAsync(replyMessage);
+            context.Wait(MessageReceived);
+        }
+
+
 
         [LuisIntent("None")]
         public async Task None(IDialogContext context, LuisResult result)
