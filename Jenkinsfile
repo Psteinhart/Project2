@@ -29,17 +29,17 @@ node('master'){
 
     stage ('Analyze'){
         try{
-            //  dir('Chatbot'){
-            //     bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:jkinsmvc'
-            //     //bat 'msbuild /t:build JenkinsMVC.csproj'
-            //     bat 'dotnet build'
-            //     bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
-            // }
+             dir('Chatbot'){
+                bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe begin /k:jkinsmvc'
+                //bat 'msbuild /t:build JenkinsMVC.csproj'
+                bat 'dotnet build'
+                bat 'C:\\Tools\\SonarQube\\SonarQube.Scanner.MSBuild.exe end'
+            }
             
-            //                 //for angular
-            //     dir('Chatbot/Chatbot.AngularClient'){//angular folder
-            //     bat 'C:\\Tools\\SonarQube\\sonar-scanner-3.0.3.778\\lib\\sonar-scanner-cli-3.0.3.778.jar /k:angular'//have to have new key
-            //     }
+                            //for angular
+                dir('Chatbot/Chatbot.AngularClient'){//angular folder
+                bat 'C:\\Tools\\SonarQube\\sonar-scanner-3.0.3.778\\lib\\sonar-scanner-cli-3.0.3.778.jar /k:angular'//have to have new key
+                }
 
 
         } catch(error){
@@ -49,18 +49,18 @@ node('master'){
 
     stage('Test'){
         try{
-            // dir('JenkinsMVC.Test')
-            // {
-            //     bat 'dotnet restore'
-            //     bat 'msbuild /t:build JenkinsMVC.Test.csproj'
-            //     bat 'dotnet test'
-            // }
+            dir('JenkinsMVC.Test')
+            {
+                bat 'dotnet restore'
+                bat 'msbuild /t:build JenkinsMVC.Test.csproj'
+                bat 'dotnet test'
+            }
             
-            //angular
-           // dir('Chatbot/Chatbot.AngularClient')
-            //{
-             //   bat 'ng test'
-            //}
+            angular
+           dir('Chatbot/Chatbot.AngularClient')
+            {
+               bat 'ng test'
+            }
 
         } catch(error){
              //SlackSend message: color:'danger'
@@ -69,12 +69,7 @@ node('master'){
 
     stage('Package'){
         try{
-            // dir('JenkinsMVC')
-            // {
-            //     bat 'dotnet publish JenkinsMVC.csproj --output ../Package'
-            //     //bat 'msbuild /t:pack JenkinsMVC.csproj'
-            // }
-            
+
             dir('Chatbot/Chatbot.AngularClient')//angular folder
             {
 				bat 'ng build --base-href /Chatbot.AngularClient/'
@@ -89,7 +84,6 @@ node('master'){
 
     stage('Deploy'){
         try{
-            bat 'dotnet build ./JenkinsMVC/JenkinsMVC.csproj /p:DeployOnBuild=true /p:PublishProfile=publish'
 			bat '"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:ContentPath="C:\\Program Files (x86)\\Jenkins\\workspace\\Jenkinops\\Chatbot\\Chatbot.angularClient\\dist" -dest:ContentPath="Default Web Site/Spotbot",wmsvc=ec2-54-152-165-243.compute-1.amazonaws.com,username=Administrator,password=Pizza1234 -allowUntrusted -enableRule:AppOffline"'
     } catch(error) {
       //slackSend message: color:'danger'
