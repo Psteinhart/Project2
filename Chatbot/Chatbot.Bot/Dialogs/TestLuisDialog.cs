@@ -52,7 +52,9 @@ namespace Chatbot.Bot.Dialogs
             string replyMessage = string.Empty;
             replyMessage += $"Here's what I found on {teamName}:\n\n";
             replyMessage += $"*{myObj.Title} \n\n";
-            replyMessage += $"*" + myObj2.Title + '\n';
+            replyMessage += $"*{myObj.Url} \n\n";
+            replyMessage += $"*{myObj2.Title} \n\n";
+            replyMessage += $"*" + myObj2.Url + '\n';
 
 
             await context.PostAsync(replyMessage);
@@ -125,7 +127,52 @@ namespace Chatbot.Bot.Dialogs
             context.Wait(MessageReceived);
         }
 
+        [LuisIntent("ScoreSearch")]
+        public async Task ScoreSearch(IDialogContext context, LuisResult result)
+        {
+            string week = result.Entities.FirstOrDefault(e => e.Type == "Week").Entity;
+            //just get team name
+            string team = result.Entities.FirstOrDefault(e => e.Type == "Team Name").Entity;
+            team = team.ToUpper();
 
+            var client = new HttpClient();
+            var queryString = HttpUtility.ParseQueryString(string.Empty);
+            List<string> title = new List<string>();
+            // Request headers
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "eef29af8e8ac402ea3f7f65c5ca7771c");
+            //for stats
+            var uri = "https://api.fantasydata.net/v3/nfl/scores/JSON/ScoresByWeek/2017/" + week + queryString;
+      
+            var response = await client.GetAsync(uri);
+            var contents = await response.Content.ReadAsStringAsync();
+            //deserilabalfdkj json
+            JsonConvert.DeserializeObject(contents);
+            var myobjList = JsonConvert.DeserializeObject<List<Scores>>(contents);
+
+            //get stats for specific name
+            Scores temp = new Scores();
+            //get team name by nameyear
+            for (int i = 0; i < myobjList.Count; i++)
+            {
+                if (myobjList[i].AwayTeam.Equals(team) || myobjList[i].HomeTeam.Equals(team)) 
+                {
+                    temp = myobjList[i];
+                }
+                
+            }
+
+
+            string replyMessage = string.Empty;
+            replyMessage += $"Here's what I found on scores of {week} for {team} in 2017 Season:\n\n";
+            replyMessage += $"*{temp.HomeTeam}:";
+            replyMessage += $"{temp.HomeScore} \n\n";
+            replyMessage += $"*{temp.AwayTeam}:";
+            replyMessage += $"{temp.AwayScore}\n";
+
+
+            await context.PostAsync(replyMessage);
+            context.Wait(MessageReceived);
+        }
 
         [LuisIntent("None")]
         public async Task None(IDialogContext context, LuisResult result)

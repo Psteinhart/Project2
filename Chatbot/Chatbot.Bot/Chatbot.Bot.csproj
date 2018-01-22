@@ -133,6 +133,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\Scores.cs" />
     <Compile Include="Models\Standing.cs" />
     <Compile Include="Models\Stats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
