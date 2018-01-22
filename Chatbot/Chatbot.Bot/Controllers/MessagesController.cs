@@ -54,7 +54,8 @@ namespace Chatbot.Bot
                 replyMessage += $"* Ask about your favorite team's news: Try 'tell me about [Team Abbreviation]'\n\n";
                 replyMessage += $"* Ask about the weekly stats for a team: Try 'show me [Team Name] week [Number]'\n\n";
                 replyMessage += $"* Ask about your teams season statistics: Try 'stats of [Team Name] '\n\n";
-               replyMessage += $"I will get more intelligent in future.";
+                replyMessage += $"* Ask about your team's information: Try '[Team Name] info'\n\n";
+                replyMessage += $"I will get more intelligent in future.";
                 return message.CreateReply(replyMessage);
             }
             else if (message.Type == ActivityTypes.ContactRelationUpdate)
