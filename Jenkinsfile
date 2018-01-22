@@ -15,12 +15,12 @@ node('master'){
             //     //bat 'msbuild /t:clean,build JenkinsMVC.csproj'
             //     bat 'dotnet build'
                 
-            //     //for angular
-            //     dir('Chatbot.AngularClient'){//folder name
-            //         bat 'npm install'
-            //         bat 'ng build'
-            //     }
-            // }
+                //for angular
+                dir('Chatbot.AngularClient'){//folder name
+                    bat 'npm install'
+                    bat 'ng build'
+                }
+            }
 
         } catch(error){
              //SlackSend message: color:'danger'
@@ -77,7 +77,6 @@ node('master'){
             
             dir('Chatbot/Chatbot.AngularClient')//angular folder
             {
-               
 				bat 'ng build --base-href /Chatbot.AngularClient/'
 				bat 'copy /y ..\\..\\web.config dist'
 			
