@@ -9,6 +9,8 @@ using Microsoft.Bot.Builder.Luis.Models;
 using Microsoft.Bot.Connector;
 using System.Net.Http;
 using System.Web;
+using Newtonsoft.Json;
+using Chatbot.Bot.Models;
 
 namespace Chatbot.Bot.Dialogs
 {
@@ -29,7 +31,27 @@ namespace Chatbot.Bot.Dialogs
         public async Task TeamSearch(IDialogContext context, LuisResult result)
         {
             string teamName = result.Entities.FirstOrDefault(e => e.Type == "Team Name").Entity;
-            await context.PostAsync("I'm sorry. I'm learning how to understand you.");
+            var client = new HttpClient();
+            var queryString = HttpUtility.ParseQueryString(string.Empty);
+            List<string> title = new List<string>();
+            // Request headers
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "eef29af8e8ac402ea3f7f65c5ca7771c");
+
+            var uri = "https://api.fantasydata.net/v3/nfl/scores/Json/NewsByTeam/"+teamName+"?" + queryString;
+
+            var response = await client.GetAsync(uri);
+            var contents = await response.Content.ReadAsStringAsync();
+
+            //deserilabalfdkj json
+            JsonConvert.DeserializeObject(contents);
+            var myobjList = JsonConvert.DeserializeObject<List<Article>>(contents);
+            var myObj = myobjList[0];
+
+            string replyMessage = string.Empty;
+            replyMessage += "*" + myObj.Title + '\n';
+
+
+            await context.PostAsync(replyMessage);
             context.Wait(MessageReceived);
         }
 

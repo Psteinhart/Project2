@@ -23,6 +23,12 @@ namespace Chatbot.LibraryService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //allow any origin for api
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
             services.AddMvc();
         }
 
@@ -33,7 +39,7 @@ namespace Chatbot.LibraryService
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("AllowSpecificOrigin");
             app.UseMvc();
         }
     }
