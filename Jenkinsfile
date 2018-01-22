@@ -72,7 +72,7 @@ node('master'){
 
             dir('Chatbot/Chatbot.AngularClient')//angular folder
             {
-				bat 'ng build --base-href /Chatbot.AngularClient/'
+				bat 'ng build --base-href /SpotBot/'
 				bat 'copy /y ..\\..\\web.config dist'
 			
             }
