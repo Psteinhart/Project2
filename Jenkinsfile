@@ -10,12 +10,12 @@ node('master'){
     }
     stage('Build'){
         try{
-            // dir('Chatbot'){
-            //     bat 'nuget restore'
-            //     //bat 'msbuild /t:clean,build JenkinsMVC.csproj'
-            //     bat 'dotnet build'
+            dir('Chatbot'){
+                bat 'nuget restore'
+                //bat 'msbuild /t:clean,build JenkinsMVC.csproj'
+                bat 'dotnet build'
                 
-                //for angular
+                for angular
                 dir('Chatbot.AngularClient'){//folder name
                     bat 'npm install'
                     bat 'ng build'
