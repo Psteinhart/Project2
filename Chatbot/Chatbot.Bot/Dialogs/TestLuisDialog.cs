@@ -116,11 +116,11 @@ namespace Chatbot.Bot.Dialogs
             }
 
             string replyMessage = string.Empty;
-            replyMessage += $"Here's what I found on stats of {nameYear} 2017 Season:\n\n";
-            replyMessage += $"*Team Wins: {temp1.Wins} \n\n";
-            replyMessage += $"*Team Losses: {temp1.Losses} \n\n";
-            replyMessage += $"*Team Score: {temp.Score} \n\n";
-            replyMessage += $"*OpponentScore: " + temp.OpponentScore + '\n';
+            replyMessage += $"Here are the {nameYear} 2017 season statistics:\n\n";
+            replyMessage += $"*Wins: {temp1.Wins} \n\n";
+            replyMessage += $"*Losses: {temp1.Losses} \n\n";
+            replyMessage += $"*Points Scored: {temp.Score} \n\n";
+            replyMessage += $"*Points Allowed: " + temp.OpponentScore + '\n';
 
 
             await context.PostAsync(replyMessage);
@@ -163,7 +163,7 @@ namespace Chatbot.Bot.Dialogs
 
 
             string replyMessage = string.Empty;
-            replyMessage += $"Here's what I found on scores of {week} for {team} in 2017 Season:\n\n";
+            replyMessage += $"Here is the week {week} score for {team} this season:\n\n";
             replyMessage += $"*{temp.HomeTeam}:";
             replyMessage += $"{temp.HomeScore} \n\n";
             replyMessage += $"*{temp.AwayTeam}:";

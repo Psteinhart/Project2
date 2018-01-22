@@ -51,7 +51,10 @@ namespace Chatbot.Bot
                 replyMessage += $"I am Spot. Designed to answer questions about Sports.  \n";
                 replyMessage += $"Currently I have following features  \n";
                 replyMessage += $"* Ask question about the author of this App: Try 'Who is Phil'\n\n";
-                replyMessage += $"I will get more intelligent in future.";
+                replyMessage += $"* Ask about your favorite team's news: Try 'tell me about [Team Abbreviation]'\n\n";
+                replyMessage += $"* Ask about the weekly stats for a team: Try 'show me [Team Name] week [Number]'\n\n";
+                replyMessage += $"* Ask about your teams season statistics: Try 'stats of [Team Name] '\n\n";
+               replyMessage += $"I will get more intelligent in future.";
                 return message.CreateReply(replyMessage);
             }
             else if (message.Type == ActivityTypes.ContactRelationUpdate)
