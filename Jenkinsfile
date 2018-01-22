@@ -15,7 +15,7 @@ node('master'){
                 //bat 'msbuild /t:clean,build JenkinsMVC.csproj'
                 bat 'dotnet build'
                 
-                for angular
+                //for angular
                 dir('Chatbot.AngularClient'){//folder name
                     bat 'npm install'
                     bat 'ng build'
