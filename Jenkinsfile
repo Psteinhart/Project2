@@ -98,7 +98,3 @@ node('master'){
   }
 }
 
-            //SlackSend message: color:'danger'
-        }
-    }
-}
