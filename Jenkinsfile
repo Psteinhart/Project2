@@ -91,8 +91,13 @@ node('master'){
     stage('Deploy'){
         try{
             bat 'dotnet build ./JenkinsMVC/JenkinsMVC.csproj /p:DeployOnBuild=true /p:PublishProfile=publish'
-			bat "MSDeploy.exe -verb:sync -source:${env.DeploySettings__angular_source} -dest:${env.DeploySettings__angular_dest} -enableRule:AppOffline -allowUntrusted"
-        } catch(error){
+			bat 'MSDeploy.exe -verb:sync -source:contentPath="C:\\Program Files (x86)\\Jenkins\\workspace\\Chatbot\\Chatbot.angularClient\\dist" -dest:iisApp="Default Web Site/jenkinsops",computerName=https://ec2-54-152-165-243.compute-1.amazonaws.com:8080/msdeploy.axd,username=Administrator,password=Pizza123,authType=basic -allowUntrusted -enableRule:AppOffline"'
+    } catch(error) {
+      //slackSend message: color:'danger'
+    }
+  }
+}
+
             //SlackSend message: color:'danger'
         }
     }
