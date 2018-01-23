@@ -50,17 +50,11 @@ node('master'){
 
     stage('Test'){
         try{
-            dir('JenkinsMVC.Test')
-            {
-                bat 'dotnet restore'
-                bat 'msbuild /t:build JenkinsMVC.Test.csproj'
-                bat 'dotnet test'
-            }
             
-            angular
+            //angular
            dir('Chatbot/Chatbot.AngularClient')
             {
-               bat 'ng test'
+               //bat 'ng test'
             }
 
         } catch(error){
