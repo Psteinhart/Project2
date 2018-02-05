@@ -16,3 +16,7 @@ Spot has the follow functionality
 is Licensed under [MIT License]()
 
 
+### AI Integration 
+
+Spot leverages Microsoft's LUIS to interpret and understand user intents (https://www.luis.ai/).
+
