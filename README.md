@@ -1,6 +1,8 @@
 # Spot (The ChatBot)
 Spot is an articficially intelligent chat bot that looks to talk about sports.  Spot currently specializes in giving information on the NFL
 
+This chatbot was built using Microsoft's bot Framework (https://dev.botframework.com/) and deployed using an Azure application service
+
 
 ## Functionality
 Spot has the follow functionality 
